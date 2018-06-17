@@ -71,6 +71,7 @@ private class TAdapter extends KeyAdapter {
     public void actionPerformed(ActionEvent e) {
 
         step();
+        repaint();
     }
 
     private void step() {
