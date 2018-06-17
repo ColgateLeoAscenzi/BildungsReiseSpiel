@@ -6,8 +6,8 @@ public class Figur {
 
     private int dx;
     private int dy;
-    private int x = 40;
-    private int y = 60;
+    private int x = 0;
+    private int y = 0;
     private int w;
     private int h;
     private Image image;

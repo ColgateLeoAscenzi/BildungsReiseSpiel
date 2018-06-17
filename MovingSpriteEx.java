@@ -13,7 +13,7 @@ public class MovingSpriteEx extends JFrame {
         add(new Map());
 
         setTitle("Map");
-        setSize(400, 300);
+        setSize(800, 800);
 
         setLocationRelativeTo(null);
         setResizable(false);
