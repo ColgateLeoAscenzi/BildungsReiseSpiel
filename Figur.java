@@ -19,7 +19,7 @@ public class Figur {
 
     private void loadImage() {
 
-        ImageIcon ii = new ImageIcon("resources/sprites/figur.png");
+        ImageIcon ii = new ImageIcon("resources/sprites/leo_figur/leo_recht.png");
         image = ii.getImage();
 
         w = image.getWidth(null);

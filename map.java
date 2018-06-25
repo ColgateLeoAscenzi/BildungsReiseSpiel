@@ -8,6 +8,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import javax.swing.*;
+import java.awt.*;
 
 public class Map extends JPanel implements ActionListener {
 
@@ -26,7 +28,7 @@ private void initMap() {
 
     addKeyListener(new TAdapter());
     setFocusable(true);
-    setBackground(Color.black);
+    setBackground(Color.white);
     setDoubleBuffered(true);
 
     figur = new Figur();
@@ -47,7 +49,6 @@ public void paintComponent(Graphics g) {
 private void doDrawing(Graphics g) {
 
     Graphics2D g2d = (Graphics2D) g;
-
     g2d.drawImage(figur.getImage(), figur.getX(),
         figur.getY(), this);
 }
