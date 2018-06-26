@@ -10,6 +10,10 @@ public class Figur extends Sprite {
     private int dy;
     private int speed;
     private int health;
+    private int damage;
+    private int mRange;
+    private int aRange;
+    private int cdTime;
     private String name;
     private List<Missile> missiles;
     private int imgC;
@@ -17,6 +21,7 @@ public class Figur extends Sprite {
     private long cooldown;
     private boolean isPlayerOne;
     private Rectangle hitbox;
+    private String fClass;
 
     public Figur(int x, int y, String name, boolean isPlayerOne) {
         super(x, y);
@@ -28,18 +33,63 @@ public class Figur extends Sprite {
         //handles cooldowns
         this.cooldown = System.currentTimeMillis();
 
-
-
-        //handles speed
-        this.speed = 2;
-        if(name.equals("eli")){
-            speed = 4;
+        //basic class assignments
+        if(name.equals("leo") || name.equals("kevin") || name.equals("eli") || name.equals("gabby") || name.equals("alex")){
+            this.fClass = "ranged";
+            this.speed = 3;
+            this.health = 10;
+            this.damage = 2;
+            this.aRange = 0;
+            this.mRange = 0;
+            this.cdTime = 300;
+        }
+        else if(name.equals("matthew") || name.equals("michael")){
+            this.fClass = "aoe";
+            this.speed = 3;
+            this.health = 10;
+            this.damage = 1;
+            this.aRange = 30;
+            this.mRange = 0;
+            this.cdTime = 200;
+        }
+        else if(name.equals("elizabeth") || name.equals("dawson") || name.equals("jack")){
+            this.fClass = "melee";
+            this.speed = 2;
+            this.health = 15;
+            this.damage = 3;
+            this.aRange = 0;
+            this.mRange = 12;
+            this.cdTime = 5;
         }
 
-        //handles health
-        this.health = 10;
+        //handles specific cases
+        if(name.equals("gabby")){
+            this.damage = 3;
+            this.health = 8;
+            this.cdTime = 600;
+        }
+        if(name.equals("eli")){
+            this.speed = 4;
+            this.damage = 1;
+            this.health = 6;
+        }
+        if(name.equals("matthew")){
+            this.speed = 3;
+        }
+        if(name.equals("elizabeth")){
+            this.health = 14;
+            this.damage = 3;
+        }
+        if(name.equals("dawson")){
+            this.mRange = 20;
+            this.damage = 3;
+            this.health = 12;
+        }
+
         if(name.equals("jack")){
-            health = 15;
+            this.health = 15;
+            this.speed = 1;
+            this.damage = 5;
         }
 
         //starting direction
@@ -79,9 +129,14 @@ public class Figur extends Sprite {
         int key = e.getKeyCode();
         if(this.isPlayerOne){
             if (key == KeyEvent.VK_E) {
-                if((System.currentTimeMillis()) - this.cooldown > 300){
-                    fire();
-                    this.cooldown = System.currentTimeMillis();
+                if(this.fClass.equals("ranged")){
+                    if((System.currentTimeMillis()) - this.cooldown > this.cdTime){
+                        fire();
+                        this.cooldown = System.currentTimeMillis();
+                    }
+                }
+                else{
+                    System.out.println("THIS CHAR NOT RANGED");
                 }
 
             }
@@ -150,11 +205,18 @@ public class Figur extends Sprite {
                 }
             }
         }
+
+        //PLAYER TWOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
         else{
             if (key == KeyEvent.VK_O) {
-                if((System.currentTimeMillis()) - this.cooldown > 300){
-                    fire();
-                    this.cooldown = System.currentTimeMillis();
+                if(this.fClass.equals("ranged")){
+                    if((System.currentTimeMillis()) - this.cooldown > this.cdTime){
+                        fire();
+                        this.cooldown = System.currentTimeMillis();
+                    }
+                }
+                else{
+                    System.out.println("THIS CHAR NOT RANGED");
                 }
 
             }
@@ -310,5 +372,9 @@ public class Figur extends Sprite {
 
     public int getHealth(){
         return this.health;
+    }
+
+    public int getDamage(){
+        return this.getDamage();
     }
 }

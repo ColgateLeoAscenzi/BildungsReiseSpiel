@@ -1,4 +1,5 @@
 import java.awt.Rectangle;
+import java.util.HashMap;
 
 public class Missile extends Sprite {
 
@@ -9,6 +10,7 @@ public class Missile extends Sprite {
     private String direction;
     private Rectangle hitbox;
     private int damage;
+    private HashMap<String, Integer> parentDamage;
 
     public Missile(int x, int y, String direction) {
         super(x, y);
@@ -21,6 +23,14 @@ public class Missile extends Sprite {
         loadImage("resources/sprites/leo_figur/leo_missile"+this.direction+".png");
         getImageDimensions();
         this.hitbox = this.getBounds();
+        this.parentDamage = new HashMap<String, Integer>();
+        //list of peoples names in a string
+        String[] ppN = new String[]{"leo","kevin","gabby","eli","alex","michael","matthew","elizabeth","dawson","jack"};
+        //list of the damages per each person
+        int[] ppD = new int[]{2, 2, 3, 1, 2, 2, 2, 3, 4, 2};
+        for(int i = 0; i < ppN.length; i++){
+            this.parentDamage.put(ppN[i],ppD[i]);
+        }
     }
 
     public Rectangle getHitbox(){
@@ -59,10 +69,9 @@ public class Missile extends Sprite {
     }
 
     public void setParent(String parent){
+        //sets the parent of the missile and their respective damage
         this.parent = parent;
-        if(parent.equals("kevin")){
-            damage = 2;
-        }
+        damage = this.parentDamage.get(parent);
     }
 
     public String getParent(){
