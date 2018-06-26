@@ -29,7 +29,7 @@ public class Map extends JPanel implements ActionListener {
 
         addKeyListener(new TAdapter());
         setFocusable(true);
-        setBackground(Color.WHITE);
+        setBackground(Color.BLACK);
         setDoubleBuffered(true);
         Figuren = new Figur[2];
 
