@@ -18,6 +18,7 @@ public class Map extends JPanel implements ActionListener {
     private Timer timer;
     private Figur Figur1;
     private Figur Figur2;
+    private Figur[] Figuren;
 
     public Map() {
 
@@ -30,8 +31,12 @@ public class Map extends JPanel implements ActionListener {
         setFocusable(true);
         setBackground(Color.WHITE);
         setDoubleBuffered(true);
+        Figuren = new Figur[2];
 
-        Figur1 = new Figur(ICRAFT_X, ICRAFT_Y, "leo");
+        Figur1 = new Figur(ICRAFT_X, ICRAFT_Y, "leo", true);
+        Figur2 = new Figur(ICRAFT_X+400, ICRAFT_Y, "kevin", false);
+        Figuren[0] = Figur1;
+        Figuren[1] = Figur2;
 
         timer = new Timer(DELAY, this);
         timer.start();
@@ -50,16 +55,20 @@ public class Map extends JPanel implements ActionListener {
 
         Graphics2D g2d = (Graphics2D) g;
 
-        g2d.drawImage(Figur1.getImage(), Figur1.getX(),
-                Figur1.getY(), this);
+        g2d.drawImage(Figur1.getImage(), Figur1.getX(), Figur1.getY(), this);
 
-        List<Missile> missiles = Figur1.getMissiles();
+        g2d.drawImage(Figur2.getImage(), Figur2.getX(), Figur2.getY(), this);
 
-        for (Missile missile : missiles) {
+        for(int i = 0; i < Figuren.length; i++){
+            List<Missile> missiles = Figuren[i].getMissiles();
 
-            g2d.drawImage(missile.getImage(), missile.getX(),
-                    missile.getY(), this);
+            for (Missile missile : missiles) {
+
+                g2d.drawImage(missile.getImage(), missile.getX(), missile.getY(), this);
+            }
         }
+
+
     }
 
     @Override
@@ -73,25 +82,29 @@ public class Map extends JPanel implements ActionListener {
 
     private void updateMissiles() {
 
-        List<Missile> missiles = Figur1.getMissiles();
+        for(int x = 0; x < Figuren.length; x++){
 
-        for (int i = 0; i < missiles.size(); i++) {
+            List<Missile> missiles = Figuren[x].getMissiles();
 
-            Missile missile = missiles.get(i);
+            for (int i = 0; i < missiles.size(); i++) {
 
-            if (missile.isVisible()) {
+                Missile missile = missiles.get(i);
 
-                missile.move();
-            } else {
+                if (missile.isVisible()) {
 
-                missiles.remove(i);
+                    missile.move();
+                } else {
+
+                    missiles.remove(i);
+                }
             }
         }
+
     }
 
     private void updateFigur() {
-
         Figur1.move();
+        Figur2.move();
     }
 
     private class TAdapter extends KeyAdapter {
@@ -99,11 +112,13 @@ public class Map extends JPanel implements ActionListener {
         @Override
         public void keyReleased(KeyEvent e) {
             Figur1.keyReleased(e);
+            Figur2.keyReleased(e);
         }
 
         @Override
         public void keyPressed(KeyEvent e) {
             Figur1.keyPressed(e);
+            Figur2.keyPressed(e);
         }
     }
 }
