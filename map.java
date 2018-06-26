@@ -78,9 +78,8 @@ private class TAdapter extends KeyAdapter {
     private void step() {
 
         figur.move();
-
-        repaint(figur.getX()-1, figur.getY()-1,
-                figur.getWidth()+2, figur.getHeight()+2);
+        repaint();
+        //repaint(figur.getX()-1, figur.getY()-1, figur.getWidth()+2, figur.getHeight()+2);
     }
 
 
