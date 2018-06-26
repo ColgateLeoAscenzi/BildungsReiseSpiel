@@ -52,7 +52,7 @@ public class Figur extends Sprite {
         missiles = new ArrayList<>();
 
         //sets up image and gets dimensions and hitboxes
-        loadImage("resources/sprites/leo_figur/leo_recht.png");
+        loadImage("resources/sprites/"+this.name+"_figur/"+this.name+"_recht.png");
         getImageDimensions();
     }
 
