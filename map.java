@@ -214,7 +214,7 @@ public class Map extends JPanel implements ActionListener {
                 //removes the damage so you have to move to reset attacking
                 Figuren[1].setDamage(1);
                 //Check death
-                if(Figuren[1].getHealth() <= 0){
+                if(Figuren[0].getHealth() <= 0){
                     System.out.println(Figuren[0].getName()+" was slain!");
                 }
             }

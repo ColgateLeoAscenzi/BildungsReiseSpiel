@@ -10,6 +10,7 @@ public class Figur extends Sprite {
     private int dy;
     private int speed;
     private int health;
+    private int oDamage;
     private int damage;
     private int mRange;
     private int aRange;
@@ -94,6 +95,7 @@ public class Figur extends Sprite {
             this.damage = 5;
         }
 
+        this.oDamage = this.damage;
         //starting direction
         this.direction = "R";
 
@@ -158,6 +160,7 @@ public class Figur extends Sprite {
 
             if (key == KeyEvent.VK_A) {
                 this.AOE = null;
+                this.damage = this.oDamage;
                 dx = -this.speed;
                 if(!direction.equals("L")){
                     imgC = 5;
@@ -174,6 +177,7 @@ public class Figur extends Sprite {
             }
             if (key == KeyEvent.VK_D) {
                 this.AOE = null;
+                this.damage = this.oDamage;
                 dx = this.speed;
                 if(!direction.equals("R")){
                     imgC = 5;
@@ -192,6 +196,7 @@ public class Figur extends Sprite {
 
             if (key == KeyEvent.VK_W) {
                 this.AOE = null;
+                this.damage = this.oDamage;
                 dy = -this.speed;
                 if(!direction.equals("U")){
                     imgC = 5;
@@ -209,6 +214,7 @@ public class Figur extends Sprite {
 
             if (key == KeyEvent.VK_S) {
                 this.AOE = null;
+                this.damage = this.oDamage;
                 dy = this.speed;
                 if(!direction.equals("D")){
                     imgC = 5;
@@ -245,6 +251,7 @@ public class Figur extends Sprite {
 
             if (key == KeyEvent.VK_J) {
                 this.AOE = null;
+                this.damage = this.oDamage;
                 dx = -this.speed;
                 if(!direction.equals("L")){
                     imgC = 5;
@@ -261,6 +268,7 @@ public class Figur extends Sprite {
             }
             if (key == KeyEvent.VK_L) {
                 this.AOE = null;
+                this.damage = this.oDamage;
                 dx = this.speed;
                 if(!direction.equals("R")){
                     imgC = 5;
@@ -279,6 +287,7 @@ public class Figur extends Sprite {
 
             if (key == KeyEvent.VK_I) {
                 this.AOE = null;
+                this.damage = this.oDamage;
                 dy = -this.speed;
                 if(!direction.equals("U")){
                     imgC = 5;
@@ -296,6 +305,7 @@ public class Figur extends Sprite {
 
             if (key == KeyEvent.VK_K) {
                 this.AOE = null;
+                this.damage = this.oDamage;
                 dy = this.speed;
                 if(!direction.equals("D")){
                     imgC = 5;
