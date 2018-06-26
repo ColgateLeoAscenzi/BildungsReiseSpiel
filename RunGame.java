@@ -21,10 +21,13 @@ public class RunGame extends JFrame {
         HealthContainer hp1 = new HealthContainer(Figuren[0]);
         HealthContainer hp2 = new HealthContainer(Figuren[1]);
 
-        map.setPreferredSize(new Dimension(800, 800));
-        lowercontainer.setPreferredSize(new Dimension(800, 32));
-        hp1.setPreferredSize(new Dimension(400,32));
-        hp2.setPreferredSize(new Dimension(400,32));
+        map.addHealthContainer1(hp1);
+        map.addHealthContainer2(hp2);
+
+        map.setPreferredSize(new Dimension(980, 800));
+        lowercontainer.setPreferredSize(new Dimension(980, 34));
+        hp1.setPreferredSize(new Dimension(490 ,34));
+        hp2.setPreferredSize(new Dimension(490,34));
 
         maincontainer.setLayout(new BoxLayout(maincontainer, BoxLayout.Y_AXIS));
         lowercontainer.setLayout(new BoxLayout(lowercontainer, BoxLayout.X_AXIS));
@@ -36,7 +39,7 @@ public class RunGame extends JFrame {
         pack();
         add(maincontainer);
         setTitle("Bildungsreise Battle Royale");
-        setSize(800,832);
+        setSize(980,834);
 
 
         setLocationRelativeTo(null);

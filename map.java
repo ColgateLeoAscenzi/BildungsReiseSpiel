@@ -13,6 +13,7 @@ import javax.swing.Timer;
 import javax.swing.ImageIcon;
 
 
+
 public class Map extends JPanel implements ActionListener {
 
     private final int ICRAFT_X = 40;
@@ -23,6 +24,8 @@ public class Map extends JPanel implements ActionListener {
     private Figur Figur2;
     private Figur[] Figuren;
     private String mapName;
+    private HealthContainer hp1;
+    private HealthContainer hp2;
 
     public Map() {
 
@@ -39,7 +42,7 @@ public class Map extends JPanel implements ActionListener {
         Figuren = new Figur[2];
 
         Figur1 = new Figur(ICRAFT_X, ICRAFT_Y, "leo", true);
-        Figur2 = new Figur(ICRAFT_X+560, ICRAFT_Y, "dawson", false);
+        Figur2 = new Figur(ICRAFT_X+560, ICRAFT_Y, "elizabeth", false);
         Figuren[0] = Figur1;
         Figuren[1] = Figur2;
 
@@ -95,6 +98,14 @@ public class Map extends JPanel implements ActionListener {
 
     }
 
+    public void addHealthContainer1(HealthContainer hp){
+        this.hp1 = hp;
+    }
+
+    public void addHealthContainer2(HealthContainer hp){
+        this.hp2 = hp;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -140,6 +151,7 @@ public class Map extends JPanel implements ActionListener {
             if(missile.getHitbox().intersects(Figuren[1].getHitbox())){
                 //damages player 2
                 Figuren[1].setHealth(Figuren[1].getHealth()-missile.getDamage());
+                this.hp1.updateHealth(Figuren[1].getHealth()-missile.getDamage());
                 //removes the missile
                 missiles.remove(missile);
                 //checks if player 2 died

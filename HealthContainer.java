@@ -11,6 +11,7 @@ import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import javax.swing.ImageIcon;
+import javax.swing.BorderFactory;
 
 
 public class HealthContainer extends JPanel{
@@ -27,8 +28,14 @@ public class HealthContainer extends JPanel{
     private void initHealthContainer(Figur figur) {
         setFocusable(true);
         setBackground(Color.GRAY);
+        setBorder(BorderFactory.createLineBorder(Color.black));
 
 
+    }
+
+    public void updateHealth(int nHealth){
+        this.health = nHealth;
+        repaint();
     }
 
     @Override
@@ -47,7 +54,9 @@ public class HealthContainer extends JPanel{
         ImageIcon ii = new ImageIcon("resources/sprites/misc/heart.png");
         Image image = ii.getImage();
 
-        g2d.drawImage(image, 0, 0, this);
+        for(int i = 0; i < health; i++){
+            g2d.drawImage(image, 0+i*34, 0, this);
+        }
 
     }
 
