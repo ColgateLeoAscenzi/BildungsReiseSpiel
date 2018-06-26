@@ -108,22 +108,37 @@ public class Map extends JPanel implements ActionListener {
     private void checkCollision(Missile missile, List<Missile> missiles){
         if(missile.getParent().equals(Figuren[0].getName())){
             if(missile.getHitbox().intersects(Figuren[1].getHitbox())){
-                System.out.println(Figuren[0].getName()+" shot "+Figuren[1].getName()+" for "+missile.getDamage()+" damage!");
+                //damages player 2
+                Figuren[1].setHealth(Figuren[1].getHealth()-missile.getDamage());
+                //removes the missile
                 missiles.remove(missile);
+                //checks if player 2 died
+                if(Figuren[1].getHealth() <= 0){
+                    System.out.println(Figuren[1].getName()+" was slain!");
+                }
             }
         }
         else{
             if(missile.getHitbox().intersects(Figuren[0].getHitbox())){
-                System.out.println(Figuren[1].getName()+" shot "+Figuren[0].getName()+" for "+missile.getDamage()+" damage!");
+                //damages player 1
+                Figuren[0].setHealth(Figuren[0].getHealth()-missile.getDamage());
+                //removes the missile
                 missiles.remove(missile);
+                //chekcs if player 1 died
+                if(Figuren[0].getHealth() <= 0){
+                    System.out.println(Figuren[0].getName()+" was slain!");
+                }
             }
         }
 
     }
 
     private void updateFigur() {
-        Figur1.move();
-        Figur2.move();
+        for(int i = 0; i < Figuren.length; i++){
+            if(Figuren[i].getHealth() > 0){
+                Figuren[i].move();
+            }
+        }
     }
 
     private class TAdapter extends KeyAdapter {

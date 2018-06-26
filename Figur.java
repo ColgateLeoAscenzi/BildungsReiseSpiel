@@ -303,4 +303,12 @@ public class Figur extends Sprite {
     public String getName(){
         return this.name;
     }
+
+    public void setHealth(int nHealth){
+        this.health = nHealth;
+    }
+
+    public int getHealth(){
+        return this.health;
+    }
 }
