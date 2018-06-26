@@ -151,7 +151,7 @@ public class Map extends JPanel implements ActionListener {
             if(missile.getHitbox().intersects(Figuren[1].getHitbox())){
                 //damages player 2
                 Figuren[1].setHealth(Figuren[1].getHealth()-missile.getDamage());
-                this.hp1.updateHealth(Figuren[1].getHealth()-missile.getDamage());
+                this.hp2.updateHealth(Figuren[1].getHealth());
                 //removes the missile
                 missiles.remove(missile);
                 //checks if player 2 died
@@ -164,6 +164,7 @@ public class Map extends JPanel implements ActionListener {
             if(missile.getHitbox().intersects(Figuren[0].getHitbox())){
                 //damages player 1
                 Figuren[0].setHealth(Figuren[0].getHealth()-missile.getDamage());
+                this.hp1.updateHealth(Figuren[0].getHealth());
                 //removes the missile
                 missiles.remove(missile);
                 //chekcs if player 1 died
@@ -181,6 +182,7 @@ public class Map extends JPanel implements ActionListener {
                 if(aoe.getHitbox().intersects(Figuren[1].getHitbox())){
                     //applies damage
                     Figuren[1].setHealth(Figuren[1].getHealth()-aoe.getDamage());
+                    this.hp2.updateHealth(Figuren[1].getHealth());
                     //removes aoe
                     Figuren[0].setAOE(null);
                     //checks death
@@ -193,6 +195,7 @@ public class Map extends JPanel implements ActionListener {
                 if(aoe.getHitbox().intersects(Figuren[0].getHitbox())){
                     //applies damage
                     Figuren[0].setHealth(Figuren[0].getHealth()-aoe.getDamage());
+                    this.hp1.updateHealth(Figuren[0].getHealth());
                     //removes AOE
                     Figuren[1].setAOE(null);
                     //checks death
@@ -211,6 +214,7 @@ public class Map extends JPanel implements ActionListener {
             if(Figuren[0].getHitbox().intersects(Figuren[1].getHitbox())){
                 //Apply sword damage
                 Figuren[1].setHealth(Figuren[1].getHealth()-Figuren[0].getDamage());
+                this.hp2.updateHealth(Figuren[1].getHealth());
                 //Change attacking to false
                 Figuren[0].setMelee(false);
                 //removes the damage so you have to move to reset attacking
@@ -225,6 +229,7 @@ public class Map extends JPanel implements ActionListener {
             if(Figuren[1].getHitbox().intersects(Figuren[0].getHitbox())){
                 //Apply sword damage
                 Figuren[0].setHealth(Figuren[0].getHealth()-Figuren[1].getDamage());
+                this.hp1.updateHealth(Figuren[0].getHealth());
                 //Change attacking to false
                 Figuren[1].setMelee(false);
                 //removes the damage so you have to move to reset attacking
