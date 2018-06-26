@@ -116,6 +116,10 @@ public class Figur extends Sprite {
         this.hitbox = this.getBounds();
     }
 
+    public boolean getIsPlayerOne(){
+        return this.isPlayerOne;
+    }
+
     public Rectangle getHitbox(){
         this.hitbox = this.getBounds();
         return this.hitbox;

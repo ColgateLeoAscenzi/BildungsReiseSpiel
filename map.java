@@ -47,6 +47,10 @@ public class Map extends JPanel implements ActionListener {
         timer.start();
     }
 
+    public Figur[] getFiguren(){
+        return this.Figuren;
+    }
+
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);

@@ -12,22 +12,31 @@ public class RunGame extends JFrame {
     }
 
     private void initUI() {
-        JPanel container = new JPanel();
-        JPanel hp = new HealthContainer();
-        JPanel map = new Map();
+        JPanel maincontainer = new JPanel();
+        JPanel lowercontainer = new JPanel();
 
-        map.setPreferredSize(new Dimension(800, 790));
-        hp.setPreferredSize(new Dimension(800,10));
+        Map map = new Map();
+        Figur[] Figuren = map.getFiguren();
 
-        container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
+        HealthContainer hp1 = new HealthContainer(Figuren[0]);
+        HealthContainer hp2 = new HealthContainer(Figuren[1]);
 
-        container.add(map);
-        container.add(hp);
+        map.setPreferredSize(new Dimension(800, 800));
+        lowercontainer.setPreferredSize(new Dimension(800, 32));
+        hp1.setPreferredSize(new Dimension(400,32));
+        hp2.setPreferredSize(new Dimension(400,32));
+
+        maincontainer.setLayout(new BoxLayout(maincontainer, BoxLayout.Y_AXIS));
+        lowercontainer.setLayout(new BoxLayout(lowercontainer, BoxLayout.X_AXIS));
+
+        lowercontainer.add(hp1); lowercontainer.add(hp2);
+        maincontainer.add(map);
+        maincontainer.add(lowercontainer);
 
         pack();
-        add(container);
+        add(maincontainer);
         setTitle("Bildungsreise Battle Royale");
-        setSize(800,900);
+        setSize(800,832);
 
 
         setLocationRelativeTo(null);

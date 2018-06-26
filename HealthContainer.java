@@ -14,16 +14,42 @@ import javax.swing.ImageIcon;
 
 
 public class HealthContainer extends JPanel{
-    public HealthContainer() {
 
-        initMap();
+    private int health;
+
+    public HealthContainer(Figur figur) {
+
+        this.health = figur.getHealth();
+        initHealthContainer(figur);
 
     }
 
-    private void initMap() {
+    private void initHealthContainer(Figur figur) {
         setFocusable(true);
-        setBackground(Color.GREEN);
+        setBackground(Color.GRAY);
+
 
     }
+
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        doDrawing(g);
+
+        Toolkit.getDefaultToolkit().sync();
+    }
+
+    private void doDrawing(Graphics g) {
+
+        Graphics2D g2d = (Graphics2D) g;
+
+        ImageIcon ii = new ImageIcon("resources/sprites/misc/heart.png");
+        Image image = ii.getImage();
+
+        g2d.drawImage(image, 0, 0, this);
+
+    }
+
 
 }
