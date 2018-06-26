@@ -86,7 +86,7 @@ public class MenschSelect extends JPanel implements ActionListener {
                 this.isStarted = true;
                 try
                     {
-                        Thread.sleep(1000);
+                        Thread.sleep(5000);
                         StartGame();
                     }
                     catch(InterruptedException ex)
