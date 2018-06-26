@@ -16,7 +16,8 @@ public class Map extends JPanel implements ActionListener {
     private final int ICRAFT_Y = 60;
     private final int DELAY = 10;
     private Timer timer;
-    private Figur Figur;
+    private Figur Figur1;
+    private Figur Figur2;
 
     public Map() {
 
@@ -30,7 +31,7 @@ public class Map extends JPanel implements ActionListener {
         setBackground(Color.WHITE);
         setDoubleBuffered(true);
 
-        Figur = new Figur(ICRAFT_X, ICRAFT_Y);
+        Figur1 = new Figur(ICRAFT_X, ICRAFT_Y, "leo");
 
         timer = new Timer(DELAY, this);
         timer.start();
@@ -49,10 +50,10 @@ public class Map extends JPanel implements ActionListener {
 
         Graphics2D g2d = (Graphics2D) g;
 
-        g2d.drawImage(Figur.getImage(), Figur.getX(),
-                Figur.getY(), this);
+        g2d.drawImage(Figur1.getImage(), Figur1.getX(),
+                Figur1.getY(), this);
 
-        List<Missile> missiles = Figur.getMissiles();
+        List<Missile> missiles = Figur1.getMissiles();
 
         for (Missile missile : missiles) {
 
@@ -72,7 +73,7 @@ public class Map extends JPanel implements ActionListener {
 
     private void updateMissiles() {
 
-        List<Missile> missiles = Figur.getMissiles();
+        List<Missile> missiles = Figur1.getMissiles();
 
         for (int i = 0; i < missiles.size(); i++) {
 
@@ -90,19 +91,19 @@ public class Map extends JPanel implements ActionListener {
 
     private void updateFigur() {
 
-        Figur.move();
+        Figur1.move();
     }
 
     private class TAdapter extends KeyAdapter {
 
         @Override
         public void keyReleased(KeyEvent e) {
-            Figur.keyReleased(e);
+            Figur1.keyReleased(e);
         }
 
         @Override
         public void keyPressed(KeyEvent e) {
-            Figur.keyPressed(e);
+            Figur1.keyPressed(e);
         }
     }
 }
