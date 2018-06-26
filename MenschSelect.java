@@ -84,19 +84,31 @@ public class MenschSelect extends JPanel implements ActionListener {
                 Figuren[0].setIsLockedIn(false);
                 System.out.println("Start Game!");
                 this.isStarted = true;
+                try
+                    {
+                        Thread.sleep(1000);
+                        StartGame();
+                    }
+                    catch(InterruptedException ex)
+                    {
+                        Thread.currentThread().interrupt();
+                    }
 
-                Runtime rt = Runtime.getRuntime();
-                try {
-                    rt.exec("java RunGame "+Figuren[0].getName()+" "+Figuren[1].getName());
-                    rt.exit(0);
-
-                } catch (IOException IE) {
-                    // TODO Auto-generated catch block
-                    IE.printStackTrace();
-                }
             }
             //update Champions
             repaint();
+        }
+
+        private void StartGame(){
+            Runtime rt = Runtime.getRuntime();
+            try {
+                rt.exec("java RunGame "+Figuren[0].getName()+" "+Figuren[1].getName());
+                rt.exit(0);
+
+            } catch (IOException IE) {
+                // TODO Auto-generated catch block
+                IE.printStackTrace();
+            }
         }
 
         private class TAdapter extends KeyAdapter {
