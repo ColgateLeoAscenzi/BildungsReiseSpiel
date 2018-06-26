@@ -64,6 +64,10 @@ public class FigurS extends Sprite {
 
                 System.out.println("Switching Right to: "+this.name);
             }
+
+            //START GAME
+            if(key == KeyEvent.VK_SPACE){
+            }
         }
         else{
             if (key == KeyEvent.VK_O) {
@@ -114,6 +118,10 @@ public class FigurS extends Sprite {
 
     public boolean getIsLockedIn(){
         return this.isLockedIn;
+    }
+
+    public void setIsLockedIn(boolean iLI){
+        this.isLockedIn = iLI;
     }
 
 }

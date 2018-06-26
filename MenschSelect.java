@@ -71,7 +71,13 @@ public class MenschSelect extends JPanel implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            //Check for completeness
 
+            if(Figuren[0].getIsLockedIn() && Figuren[1].getIsLockedIn()){
+                //START GAME
+                Figuren[0].setIsLockedIn(false);
+                System.out.println("Start Game!");
+            }
             //update Champions
             repaint();
         }
