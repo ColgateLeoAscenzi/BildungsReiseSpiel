@@ -33,7 +33,7 @@ public class Map extends JPanel implements ActionListener {
         setDoubleBuffered(true);
         Figuren = new Figur[2];
 
-        Figur1 = new Figur(ICRAFT_X, ICRAFT_Y, "eli", true);
+        Figur1 = new Figur(ICRAFT_X, ICRAFT_Y, "matthew", true);
         Figur2 = new Figur(ICRAFT_X+560, ICRAFT_Y, "michael", false);
         Figuren[0] = Figur1;
         Figuren[1] = Figur2;
