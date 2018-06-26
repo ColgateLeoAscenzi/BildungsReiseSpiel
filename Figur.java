@@ -101,15 +101,41 @@ public class Figur extends Sprite {
 
         if (key == KeyEvent.VK_W) {
             dy = -this.speed;
+            if(!direction.equals("U")){
+                imgC = 5;
+                direction = "U";
+            }
+            if (imgC == 5){
+                imgC = 0;
+                loadImage("resources/sprites/"+this.name+"_figur/"+this.name+"_uber.png");
+            }
+            else{
+                imgC += 1;
+                loadImage("resources/sprites/"+this.name+"_figur/"+this.name+"_uber1.png");
+            }
         }
 
         if (key == KeyEvent.VK_S) {
             dy = this.speed;
+            if(!direction.equals("D")){
+                imgC = 5;
+                direction = "D";
+            }
+            if (imgC == 5){
+                imgC = 0;
+                loadImage("resources/sprites/"+this.name+"_figur/"+this.name+"_unter.png");
+            }
+            else{
+                imgC += 1;
+                loadImage("resources/sprites/"+this.name+"_figur/"+this.name+"_unter1.png");
+            }
         }
     }
 
     public void fire() {
-        missiles.add(new Missile(x + width, y + height / 2));
+        Missile tempMissile = new Missile(x + width / 2, y + height / 2, this.direction);
+        tempMissile.setParent("this.name");
+        missiles.add(tempMissile);
     }
 
     public void keyReleased(KeyEvent e) {
@@ -119,6 +145,7 @@ public class Figur extends Sprite {
         if (key == KeyEvent.VK_A) {
             if(dx == -this.speed){
                 dx = 0;
+                loadImage("resources/sprites/"+this.name+"_figur/"+this.name+"_links.png");
             }
 
         }
@@ -126,6 +153,7 @@ public class Figur extends Sprite {
         if (key == KeyEvent.VK_D) {
             if(dx == this.speed){
                 dx = 0;
+                loadImage("resources/sprites/"+this.name+"_figur/"+this.name+"_recht.png");
             }
 
         }
@@ -133,12 +161,14 @@ public class Figur extends Sprite {
         if (key == KeyEvent.VK_W) {
             if(dy == -this.speed){
                 dy = 0;
+                loadImage("resources/sprites/"+this.name+"_figur/"+this.name+"_uber.png");
             }
         }
 
         if (key == KeyEvent.VK_S) {
             if(dy == this.speed){
                 dy = 0;
+                loadImage("resources/sprites/"+this.name+"_figur/"+this.name+"_unter.png");
             }
         }
     }
