@@ -27,12 +27,12 @@ public class Map extends JPanel implements ActionListener {
     private HealthContainer hp1;
     private HealthContainer hp2;
 
-    public Map() {
+    public Map(String char1, String char2) {
 
-        initMap();
+        initMap(char1, char2);
     }
 
-    private void initMap() {
+    private void initMap(String char1, String char2) {
 
         this.mapName = "donaueschingenmap";
         addKeyListener(new TAdapter());
@@ -41,8 +41,8 @@ public class Map extends JPanel implements ActionListener {
         setDoubleBuffered(true);
         Figuren = new Figur[2];
 
-        Figur1 = new Figur(ICRAFT_X, ICRAFT_Y, "alex", true);
-        Figur2 = new Figur(ICRAFT_X+560, ICRAFT_Y, "elizabeth", false);
+        Figur1 = new Figur(ICRAFT_X, ICRAFT_Y, char1, true);
+        Figur2 = new Figur(ICRAFT_X+560, ICRAFT_Y, char2, false);
         Figuren[0] = Figur1;
         Figuren[1] = Figur2;
 

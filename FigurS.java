@@ -53,7 +53,7 @@ public class FigurS extends Sprite {
 
             }
             if(key == KeyEvent.VK_A){
-                if(currI > 1){
+                if(currI > 0){
                     currI -= 1;
                 }
                 else{
@@ -62,7 +62,7 @@ public class FigurS extends Sprite {
                 this.name = players[currI];
                 loadImage("resources/sprites/"+this.name+"_figur/"+this.name+"_S.png");
 
-                System.out.println("Switching Right to: "+this.name);
+                System.out.println("Switching Left to: "+this.name);
             }
 
             //START GAME
@@ -87,7 +87,7 @@ public class FigurS extends Sprite {
                 System.out.println("Switching Right to: "+this.name);
             }
             if(key == KeyEvent.VK_J){
-                if(currI > 1){
+                if(currI > 0){
                     currI -= 1;
                 }
                 else{
@@ -96,7 +96,7 @@ public class FigurS extends Sprite {
                 this.name = players[currI];
                 loadImage("resources/sprites/"+this.name+"_figur/"+this.name+"_S.png");
 
-                System.out.println("Switching Right to: "+this.name);
+                System.out.println("Switching Left to: "+this.name);
             }
         }
 

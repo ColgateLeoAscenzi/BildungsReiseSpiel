@@ -4,11 +4,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.BoxLayout;
 
-public class RunGame extends JFrame {
 
+public class RunGame extends JFrame {
     public RunGame() {
         initSelect();
-        //initUI();
+    }
+    public RunGame(String char1, String char2) {
+        initUI(char1, char2);
     }
 
     private void initSelect(){
@@ -29,11 +31,11 @@ public class RunGame extends JFrame {
 
     }
 
-    private void initUI() {
+    private void initUI(String char1, String char2) {
         JPanel maincontainer = new JPanel();
         JPanel lowercontainer = new JPanel();
 
-        Map map = new Map();
+        Map map = new Map(char1, char2);
         Figur[] Figuren = map.getFiguren();
 
         HealthContainer hp1 = new HealthContainer(Figuren[0]);
@@ -67,10 +69,18 @@ public class RunGame extends JFrame {
     }
 
     public static void main(String[] args) {
-
         EventQueue.invokeLater(() -> {
-            RunGame ex = new RunGame();
-            ex.setVisible(true);
+            if(args.length == 0){
+                RunGame ex = new RunGame();
+                ex.setVisible(true);
+            }
+            else{
+                String char1 = args[0];
+                String char2 = args[1];
+                RunGame ex = new RunGame(char1, char2);
+                ex.setVisible(true);
+            }
+
         });
     }
 }

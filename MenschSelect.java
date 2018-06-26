@@ -7,10 +7,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.Image;
+import java.io.IOException;
 import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import javax.swing.ImageIcon;
+import java.lang.Runtime;
 
 
 
@@ -24,6 +26,8 @@ public class MenschSelect extends JPanel implements ActionListener {
         private FigurS Figur1S;
         private FigurS Figur2S;
         private FigurS[] Figuren;
+
+        private boolean isStarted;
 
         public MenschSelect() {
 
@@ -44,6 +48,8 @@ public class MenschSelect extends JPanel implements ActionListener {
 
             Timer timer = new Timer(10, this);
             timer.start();
+
+            this.isStarted = false;
 
         }
 
@@ -77,6 +83,17 @@ public class MenschSelect extends JPanel implements ActionListener {
                 //START GAME
                 Figuren[0].setIsLockedIn(false);
                 System.out.println("Start Game!");
+                this.isStarted = true;
+
+                Runtime rt = Runtime.getRuntime();
+                try {
+                    rt.exec("java RunGame "+Figuren[0].getName()+" "+Figuren[1].getName());
+                    rt.exit(0);
+
+                } catch (IOException IE) {
+                    // TODO Auto-generated catch block
+                    IE.printStackTrace();
+                }
             }
             //update Champions
             repaint();
@@ -95,6 +112,10 @@ public class MenschSelect extends JPanel implements ActionListener {
                 Figur1S.keyPressed(e);
                 Figur2S.keyPressed(e);
             }
+        }
+
+        public boolean getIsStarted(){
+            return this.isStarted;
         }
 
 
