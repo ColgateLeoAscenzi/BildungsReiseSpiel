@@ -149,6 +149,7 @@ public class Figur extends Sprite {
             }
 
             if (key == KeyEvent.VK_A) {
+                this.AOE = null;
                 dx = -this.speed;
                 if(!direction.equals("L")){
                     imgC = 5;
@@ -164,6 +165,7 @@ public class Figur extends Sprite {
                 }
             }
             if (key == KeyEvent.VK_D) {
+                this.AOE = null;
                 dx = this.speed;
                 if(!direction.equals("R")){
                     imgC = 5;
@@ -181,6 +183,7 @@ public class Figur extends Sprite {
 
 
             if (key == KeyEvent.VK_W) {
+                this.AOE = null;
                 dy = -this.speed;
                 if(!direction.equals("U")){
                     imgC = 5;
@@ -197,6 +200,7 @@ public class Figur extends Sprite {
             }
 
             if (key == KeyEvent.VK_S) {
+                this.AOE = null;
                 dy = this.speed;
                 if(!direction.equals("D")){
                     imgC = 5;
@@ -229,6 +233,7 @@ public class Figur extends Sprite {
             }
 
             if (key == KeyEvent.VK_J) {
+                this.AOE = null;
                 dx = -this.speed;
                 if(!direction.equals("L")){
                     imgC = 5;
@@ -244,6 +249,7 @@ public class Figur extends Sprite {
                 }
             }
             if (key == KeyEvent.VK_L) {
+                this.AOE = null;
                 dx = this.speed;
                 if(!direction.equals("R")){
                     imgC = 5;
@@ -261,6 +267,7 @@ public class Figur extends Sprite {
 
 
             if (key == KeyEvent.VK_I) {
+                this.AOE = null;
                 dy = -this.speed;
                 if(!direction.equals("U")){
                     imgC = 5;
@@ -277,6 +284,7 @@ public class Figur extends Sprite {
             }
 
             if (key == KeyEvent.VK_K) {
+                this.AOE = null;
                 dy = this.speed;
                 if(!direction.equals("D")){
                     imgC = 5;
