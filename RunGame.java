@@ -1,6 +1,8 @@
 import java.awt.EventQueue;
+import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.BoxLayout;
 
 public class RunGame extends JFrame {
 
@@ -10,11 +12,22 @@ public class RunGame extends JFrame {
     }
 
     private void initUI() {
+        JPanel container = new JPanel();
+        JPanel hp = new HealthContainer();
+        JPanel map = new Map();
 
-        add(new Map());
-        //add(new HealhtContainer());
-        setTitle("Map");
-        setSize(800, 900);
+        map.setPreferredSize(new Dimension(800, 790));
+        hp.setPreferredSize(new Dimension(800,10));
+
+        container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
+
+        container.add(map);
+        container.add(hp);
+
+        pack();
+        add(container);
+        setTitle("Bildungsreise Battle Royale");
+        setSize(800,900);
 
 
         setLocationRelativeTo(null);

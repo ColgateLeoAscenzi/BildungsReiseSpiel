@@ -21,7 +21,8 @@ public class HealthContainer extends JPanel{
     }
 
     private void initMap() {
-
+        setFocusable(true);
+        setBackground(Color.GREEN);
 
     }
 
