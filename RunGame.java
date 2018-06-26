@@ -7,8 +7,13 @@ import javax.swing.BoxLayout;
 public class RunGame extends JFrame {
 
     public RunGame() {
-
+        initSelect();
         initUI();
+    }
+
+    private void initSelect(){
+        JPanel select = new JPanel();
+        
     }
 
     private void initUI() {
