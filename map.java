@@ -90,13 +90,32 @@ public class Map extends JPanel implements ActionListener {
 
                 Missile missile = missiles.get(i);
 
-                if (missile.isVisible()) {
+                //handle collision
+                checkCollision(missile, missiles);
 
+
+                if (missile.isVisible()) {
                     missile.move();
                 } else {
 
                     missiles.remove(i);
                 }
+            }
+        }
+
+    }
+
+    private void checkCollision(Missile missile, List<Missile> missiles){
+        if(missile.getParent().equals(Figuren[0].getName())){
+            if(missile.getHitbox().intersects(Figuren[1].getHitbox())){
+                System.out.println(Figuren[0].getName()+" shot "+Figuren[1].getName()+" for "+missile.getDamage()+" damage!");
+                missiles.remove(missile);
+            }
+        }
+        else{
+            if(missile.getHitbox().intersects(Figuren[0].getHitbox())){
+                System.out.println(Figuren[1].getName()+" shot "+Figuren[0].getName()+" for "+missile.getDamage()+" damage!");
+                missiles.remove(missile);
             }
         }
 

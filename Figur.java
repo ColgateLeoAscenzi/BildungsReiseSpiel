@@ -1,4 +1,5 @@
 import java.awt.event.KeyEvent;
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -15,6 +16,7 @@ public class Figur extends Sprite {
     private String direction;
     private long cooldown;
     private boolean isPlayerOne;
+    private Rectangle hitbox;
 
     public Figur(int x, int y, String name, boolean isPlayerOne) {
         super(x, y);
@@ -55,6 +57,12 @@ public class Figur extends Sprite {
         //sets up image and gets dimensions and hitboxes
         loadImage("resources/sprites/"+this.name+"_figur/"+this.name+"_recht.png");
         getImageDimensions();
+        this.hitbox = this.getBounds();
+    }
+
+    public Rectangle getHitbox(){
+        this.hitbox = this.getBounds();
+        return this.hitbox;
     }
 
     public void move() {

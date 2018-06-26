@@ -10,6 +10,7 @@ public class Sprite {
     protected int height;
     protected boolean visible;
     protected Image image;
+    protected Rectangle hitbox;
 
     public Sprite(int x, int y) {
 

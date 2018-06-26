@@ -1,3 +1,5 @@
+import java.awt.Rectangle;
+
 public class Missile extends Sprite {
 
     private final int BOARD_WIDTH = 800;
@@ -5,6 +7,8 @@ public class Missile extends Sprite {
     private final int MISSILE_SPEED = 5;
     private String parent;
     private String direction;
+    private Rectangle hitbox;
+    private int damage;
 
     public Missile(int x, int y, String direction) {
         super(x, y);
@@ -13,9 +17,15 @@ public class Missile extends Sprite {
     }
 
     private void initMissile() {
-
+        this.damage = 1;
         loadImage("resources/sprites/leo_figur/leo_missile"+this.direction+".png");
         getImageDimensions();
+        this.hitbox = this.getBounds();
+    }
+
+    public Rectangle getHitbox(){
+        this.hitbox = this.getBounds();
+        return this.hitbox;
     }
 
     public void move() {
@@ -50,6 +60,17 @@ public class Missile extends Sprite {
 
     public void setParent(String parent){
         this.parent = parent;
+        if(parent.equals("kevin")){
+            damage = 2;
+        }
+    }
+
+    public String getParent(){
+        return this.parent;
+    }
+
+    public int getDamage(){
+        return this.damage;
     }
 
 }
