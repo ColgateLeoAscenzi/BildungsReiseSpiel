@@ -21,6 +21,7 @@ public class Figur extends Sprite {
     private String direction;
     private long cooldown;
     private boolean isPlayerOne;
+    private boolean isMelee;
     private Rectangle hitbox;
     private String fClass;
 
@@ -33,9 +34,9 @@ public class Figur extends Sprite {
     private void initFigur(String name) {
         //handles cooldowns
         this.cooldown = System.currentTimeMillis();
-
+        this.isMelee = false;
         //basic class assignments
-        if(name.equals("leo") || name.equals("kevin") || name.equals("eli") || name.equals("gabby") || name.equals("alex")){
+        if(name.equals("leo") || name.equals("kevin") || name.equals("eli") || name.equals("gabby") || name.equals("alex") || name.equals("jack")){
             this.fClass = "ranged";
             this.speed = 2;
             this.health = 10;
@@ -53,7 +54,7 @@ public class Figur extends Sprite {
             this.mRange = 0;
             this.cdTime = 200;
         }
-        else if(name.equals("elizabeth") || name.equals("dawson") || name.equals("jack")){
+        else if(name.equals("elizabeth") || name.equals("dawson")){
             this.fClass = "melee";
             this.speed = 2;
             this.health = 15;
@@ -131,6 +132,10 @@ public class Figur extends Sprite {
         return AOE;
     }
 
+    public boolean getMelee(){
+        return isMelee;
+    }
+
     public void keyPressed(KeyEvent e) {
 
         int key = e.getKeyCode();
@@ -140,8 +145,11 @@ public class Figur extends Sprite {
                     if(this.fClass.equals("ranged")){
                         fire();
                     }
-                    else{
+                    else if(this.fClass.equals("aoe")){
                         burst();
+                    }
+                    else{
+                        strike();
                     }
                     this.cooldown = System.currentTimeMillis();
                 }
@@ -315,6 +323,23 @@ public class Figur extends Sprite {
 
     }
 
+    public void strike(){
+        this.isMelee = true;
+        if(this.direction.equals("R")){
+            loadImage("resources/sprites/"+this.name+"_figur/"+this.name+"_recht2.png");
+        }
+        if(this.direction.equals("L")){
+            loadImage("resources/sprites/"+this.name+"_figur/"+this.name+"_links2.png");
+        }
+        if(this.direction.equals("D")){
+            loadImage("resources/sprites/"+this.name+"_figur/"+this.name+"_unter2.png");
+        }
+        if(this.direction.equals("U")){
+            loadImage("resources/sprites/"+this.name+"_figur/"+this.name+"_uber2.png");
+        }
+
+    }
+
     public void keyReleased(KeyEvent e) {
 
         int key = e.getKeyCode();
@@ -396,7 +421,7 @@ public class Figur extends Sprite {
     }
 
     public int getDamage(){
-        return this.getDamage();
+        return this.damage;
     }
 
     public String getfClass(){
@@ -405,5 +430,9 @@ public class Figur extends Sprite {
 
     public void setAOE(AOE aoe){
         this.AOE = aoe;
+    }
+
+    public void setMelee(boolean isMelee){
+        this.isMelee = isMelee;
     }
 }

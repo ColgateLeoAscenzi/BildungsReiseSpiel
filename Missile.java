@@ -28,7 +28,7 @@ public class Missile extends Sprite {
         //list of peoples names in a string
         String[] ppN = new String[]{"leo","kevin","gabby","eli","alex","michael","matthew","elizabeth","dawson","jack"};
         //list of the damages per each person
-        int[] ppD = new int[]{2, 2, 3, 1, 2, 2, 2, 3, 4, 2};
+        int[] ppD = new int[]{2, 2, 3, 1, 2, 2, 2, 3, 4, 5};
         for(int i = 0; i < ppN.length; i++){
             this.parentDamage.put(ppN[i],ppD[i]);
         }
