@@ -4,7 +4,6 @@
 - - Regensburg
 - - Passau
 - - Linz
-- - Mauthausen
 - - Weißenkirchen in der Wachau
 - -  Wien
 - -  Leipzig
@@ -15,7 +14,7 @@
 - - Leo: Kunai Throwing Knives, ranged weapon does 1 damage, 10 health, 5 speed
 - - Kevin: IR Textbooks, ranged weapon does 1 damage, 10 health, 5 speed
 - - Gabby: Crossbow with Forks, ranged weapon does 2 damage, 8 health, 5 speed
-- - Eli: Harp, ranged weapon does 0.5 damage, 11 health, 8 speed
+- - Eli: Trumpet, ranged weapon does 0.5 damage, 11 health, 8 speed
 - - Alex: Soccer Ball, range weapon does 1 damage, 10 health, 6 speed
 - - Michael: Holy Cross Explosion, ranged AOE (30), does 1 damage, 10 health, 5 speed
 - - Matthew: Corrections, ranged AOE (30), does 1 damage, 10 health, 6 speed

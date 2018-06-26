@@ -6,81 +6,103 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-import javax.swing.*;
-import java.awt.*;
 
 public class Map extends JPanel implements ActionListener {
 
-    private Timer timer;
-    private Figur figur;
+    private final int ICRAFT_X = 40;
+    private final int ICRAFT_Y = 60;
     private final int DELAY = 10;
-
+    private Timer timer;
+    private Figur Figur;
 
     public Map() {
+
         initMap();
-        System.out.println("Created Board");
     }
 
+    private void initMap() {
 
-private void initMap() {
+        addKeyListener(new TAdapter());
+        setFocusable(true);
+        setBackground(Color.WHITE);
+        setDoubleBuffered(true);
 
-    addKeyListener(new TAdapter());
-    setFocusable(true);
-    setBackground(Color.white);
-    setDoubleBuffered(true);
+        Figur = new Figur(ICRAFT_X, ICRAFT_Y);
 
-    figur = new Figur();
-
-    timer = new Timer(DELAY, this);
-    timer.start();
-}
-
-@Override
-public void paintComponent(Graphics g) {
-    super.paintComponent(g);
-
-    doDrawing(g);
-
-    Toolkit.getDefaultToolkit().sync();
-}
-
-private void doDrawing(Graphics g) {
-
-    Graphics2D g2d = (Graphics2D) g;
-    g2d.drawImage(figur.getImage(), figur.getX(),
-        figur.getY(), this);
-}
-
-
-private class TAdapter extends KeyAdapter {
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        figur.keyReleased(e);
+        timer = new Timer(DELAY, this);
+        timer.start();
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {
-        figur.keyPressed(e);
-    }
-}
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
 
+        doDrawing(g);
+
+        Toolkit.getDefaultToolkit().sync();
+    }
+
+    private void doDrawing(Graphics g) {
+
+        Graphics2D g2d = (Graphics2D) g;
+
+        g2d.drawImage(Figur.getImage(), Figur.getX(),
+                Figur.getY(), this);
+
+        List<Missile> missiles = Figur.getMissiles();
+
+        for (Missile missile : missiles) {
+
+            g2d.drawImage(missile.getImage(), missile.getX(),
+                    missile.getY(), this);
+        }
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        step();
+        updateMissiles();
+        updateFigur();
+
         repaint();
     }
 
-    private void step() {
+    private void updateMissiles() {
 
-        figur.move();
-        repaint();
-        //repaint(figur.getX()-1, figur.getY()-1, figur.getWidth()+2, figur.getHeight()+2);
+        List<Missile> missiles = Figur.getMissiles();
+
+        for (int i = 0; i < missiles.size(); i++) {
+
+            Missile missile = missiles.get(i);
+
+            if (missile.isVisible()) {
+
+                missile.move();
+            } else {
+
+                missiles.remove(i);
+            }
+        }
     }
 
+    private void updateFigur() {
 
+        Figur.move();
+    }
+
+    private class TAdapter extends KeyAdapter {
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+            Figur.keyReleased(e);
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+            Figur.keyPressed(e);
+        }
+    }
 }
