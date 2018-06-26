@@ -304,13 +304,13 @@ public class Figur extends Sprite {
     }
 
     public void fire() {
-        Missile tempMissile = new Missile(x + width / 2, y + height / 2, this.direction);
-        tempMissile.setParent(this.name);
+        Missile tempMissile = new Missile(x + width / 2, y + height / 2, this.direction, this.name);
         missiles.add(tempMissile);
     }
 
     public void burst(){
-        this.AOE = new AOE(x-width/3, y-width/3);
+        AOE tempAOE = new AOE(x-width/4, y-width/4, this.name);
+        this.AOE = tempAOE;
         loadImage("resources/sprites/"+this.name+"_figur/"+this.name+"_burst.png");
 
     }
@@ -401,5 +401,9 @@ public class Figur extends Sprite {
 
     public String getfClass(){
         return this.fClass;
+    }
+
+    public void setAOE(AOE aoe){
+        this.AOE = aoe;
     }
 }

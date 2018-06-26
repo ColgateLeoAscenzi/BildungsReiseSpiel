@@ -92,6 +92,10 @@ public class Map extends JPanel implements ActionListener {
     private void updateMissiles() {
 
         for(int x = 0; x < Figuren.length; x++){
+            AOE tempAOE = Figuren[x].getAOE();
+            checkAOECollision(tempAOE);
+
+
 
             List<Missile> missiles = Figuren[x].getMissiles();
 
@@ -142,9 +146,36 @@ public class Map extends JPanel implements ActionListener {
 
     }
 
-    private void checkAOECollision(){
-        //do something
+    private void checkAOECollision(AOE aoe){
+        if(aoe != null){
+            if(aoe.getParent().equals(Figuren[0].getName())){
+                if(aoe.getHitbox().intersects(Figuren[1].getHitbox())){
+                    //applies damage
+                    Figuren[1].setHealth(Figuren[1].getHealth()-aoe.getDamage());
+                    //removes aoe
+                    Figuren[0].setAOE(null);
+                    //checks death
+                    if(Figuren[1].getHealth() <= 0){
+                        System.out.println(Figuren[1].getName()+" was slain!");
+                    }
+                }
+            }
+            else{
+                if(aoe.getHitbox().intersects(Figuren[0].getHitbox())){
+                    //applies damage
+                    Figuren[0].setHealth(Figuren[0].getHealth()-aoe.getDamage());
+                    //removes AOE
+                    Figuren[1].setAOE(null);
+                    //checks death
+                    if(Figuren[0].getHealth() <= 0){
+                        System.out.println(Figuren[0].getName()+" was slain!");
+                    }
+                }
+            }
+        }
+
     }
+
 
     private void updateFigur() {
         for(int i = 0; i < Figuren.length; i++){

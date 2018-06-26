@@ -12,15 +12,16 @@ public class Missile extends Sprite {
     private int damage;
     private HashMap<String, Integer> parentDamage;
 
-    public Missile(int x, int y, String direction) {
+    public Missile(int x, int y, String direction, String parent) {
         super(x, y);
+        this.parent = parent;
         this.direction = direction;
         initMissile();
     }
 
     private void initMissile() {
         this.damage = 1;
-        loadImage("resources/sprites/leo_figur/leo_missile"+this.direction+".png");
+        loadImage("resources/sprites/"+this.parent+"_figur/"+this.parent+"_missile"+this.direction+".png");
         getImageDimensions();
         this.hitbox = this.getBounds();
         this.parentDamage = new HashMap<String, Integer>();

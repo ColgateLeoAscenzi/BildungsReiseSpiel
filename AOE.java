@@ -7,13 +7,14 @@ public class AOE extends Sprite {
     private Rectangle hitbox;
     private int damage;
 
-    public AOE(int x, int y) {
+    public AOE(int x, int y, String parent) {
         super(x, y);
+        this.parent = parent;
         initAOE();
     }
 
     private void initAOE() {
-        loadImage("resources/sprites/michael_figur/michael_aoe.png");
+        loadImage("resources/sprites/"+this.parent+"_figur/"+this.parent+"_aoe.png");
         getImageDimensions();
         this.hitbox = this.getBounds();
         this.damage = 2;
