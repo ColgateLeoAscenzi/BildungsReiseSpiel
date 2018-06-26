@@ -6,9 +6,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.Image;
 import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import javax.swing.ImageIcon;
+
 
 public class Map extends JPanel implements ActionListener {
 
@@ -19,6 +22,7 @@ public class Map extends JPanel implements ActionListener {
     private Figur Figur1;
     private Figur Figur2;
     private Figur[] Figuren;
+    private String mapName;
 
     public Map() {
 
@@ -27,6 +31,7 @@ public class Map extends JPanel implements ActionListener {
 
     private void initMap() {
 
+        this.mapName = "donaueschingenmap";
         addKeyListener(new TAdapter());
         setFocusable(true);
         setBackground(Color.BLACK);
@@ -54,6 +59,11 @@ public class Map extends JPanel implements ActionListener {
     private void doDrawing(Graphics g) {
 
         Graphics2D g2d = (Graphics2D) g;
+
+        ImageIcon ii = new ImageIcon("resources/backgrounds/"+this.mapName+".png");
+        Image image = ii.getImage();
+
+        g2d.drawImage(image, 0, 0, this);
 
         for(int i = 0; i < Figuren.length; i++){
             if(Figuren[i].getfClass().equals("ranged")){
