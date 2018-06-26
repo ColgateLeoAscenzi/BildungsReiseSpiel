@@ -13,7 +13,7 @@ import javax.swing.Timer;
 public class Map extends JPanel implements ActionListener {
 
     private final int ICRAFT_X = 40;
-    private final int ICRAFT_Y = 60;
+    private final int ICRAFT_Y = 300;
     private final int DELAY = 10;
     private Timer timer;
     private Figur Figur1;
@@ -34,7 +34,7 @@ public class Map extends JPanel implements ActionListener {
         Figuren = new Figur[2];
 
         Figur1 = new Figur(ICRAFT_X, ICRAFT_Y, "leo", true);
-        Figur2 = new Figur(ICRAFT_X+400, ICRAFT_Y, "kevin", false);
+        Figur2 = new Figur(ICRAFT_X+560, ICRAFT_Y, "kevin", false);
         Figuren[0] = Figur1;
         Figuren[1] = Figur2;
 
