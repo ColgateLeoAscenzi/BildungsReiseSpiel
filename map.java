@@ -55,17 +55,27 @@ public class Map extends JPanel implements ActionListener {
 
         Graphics2D g2d = (Graphics2D) g;
 
-        g2d.drawImage(Figur1.getImage(), Figur1.getX(), Figur1.getY(), this);
-
-        g2d.drawImage(Figur2.getImage(), Figur2.getX(), Figur2.getY(), this);
-
         for(int i = 0; i < Figuren.length; i++){
-            List<Missile> missiles = Figuren[i].getMissiles();
+            if(Figuren[i].getfClass().equals("ranged")){
+                List<Missile> missiles = Figuren[i].getMissiles();
 
-            for (Missile missile : missiles) {
+                for (Missile missile : missiles) {
 
-                g2d.drawImage(missile.getImage(), missile.getX(), missile.getY(), this);
+                    g2d.drawImage(missile.getImage(), missile.getX(), missile.getY(), this);
+                }
             }
+            else if(Figuren[i].getfClass().equals("aoe")){
+                AOE tempAOE = Figuren[i].getAOE();
+                if(tempAOE != null){
+                    g2d.drawImage(tempAOE.getImage(), tempAOE.getX(), tempAOE.getY(), this);
+                }
+            }
+            else{
+                //melee
+            }
+
+            g2d.drawImage(Figuren[i].getImage(), Figuren[i].getX(), Figuren[i].getY(), this);
+
         }
 
 
@@ -76,7 +86,6 @@ public class Map extends JPanel implements ActionListener {
 
         updateMissiles();
         updateFigur();
-
         repaint();
     }
 
@@ -91,7 +100,7 @@ public class Map extends JPanel implements ActionListener {
                 Missile missile = missiles.get(i);
 
                 //handle collision
-                checkCollision(missile, missiles);
+                checkMissileCollision(missile, missiles);
 
 
                 if (missile.isVisible()) {
@@ -105,7 +114,7 @@ public class Map extends JPanel implements ActionListener {
 
     }
 
-    private void checkCollision(Missile missile, List<Missile> missiles){
+    private void checkMissileCollision(Missile missile, List<Missile> missiles){
         if(missile.getParent().equals(Figuren[0].getName())){
             if(missile.getHitbox().intersects(Figuren[1].getHitbox())){
                 //damages player 2
@@ -131,6 +140,10 @@ public class Map extends JPanel implements ActionListener {
             }
         }
 
+    }
+
+    private void checkAOECollision(){
+        //do something
     }
 
     private void updateFigur() {

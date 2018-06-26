@@ -16,6 +16,7 @@ public class Figur extends Sprite {
     private int cdTime;
     private String name;
     private List<Missile> missiles;
+    private AOE AOE;
     private int imgC;
     private String direction;
     private long cooldown;
@@ -104,6 +105,8 @@ public class Figur extends Sprite {
         //holds missiles if ranged
         missiles = new ArrayList<>();
 
+        AOE = null;
+
         //sets up image and gets dimensions and hitboxes
         loadImage("resources/sprites/"+this.name+"_figur/"+this.name+"_recht.png");
         getImageDimensions();
@@ -124,19 +127,23 @@ public class Figur extends Sprite {
         return missiles;
     }
 
+    public AOE getAOE(){
+        return AOE;
+    }
+
     public void keyPressed(KeyEvent e) {
 
         int key = e.getKeyCode();
         if(this.isPlayerOne){
             if (key == KeyEvent.VK_E) {
-                if(this.fClass.equals("ranged")){
-                    if((System.currentTimeMillis()) - this.cooldown > this.cdTime){
+                if((System.currentTimeMillis()) - this.cooldown > this.cdTime){
+                    if(this.fClass.equals("ranged")){
                         fire();
-                        this.cooldown = System.currentTimeMillis();
                     }
-                }
-                else{
-                    System.out.println("THIS CHAR NOT RANGED");
+                    else{
+                        burst();
+                    }
+                    this.cooldown = System.currentTimeMillis();
                 }
 
             }
@@ -209,14 +216,14 @@ public class Figur extends Sprite {
         //PLAYER TWOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
         else{
             if (key == KeyEvent.VK_O) {
-                if(this.fClass.equals("ranged")){
-                    if((System.currentTimeMillis()) - this.cooldown > this.cdTime){
+                if((System.currentTimeMillis()) - this.cooldown > this.cdTime){
+                    if(this.fClass.equals("ranged")){
                         fire();
-                        this.cooldown = System.currentTimeMillis();
                     }
-                }
-                else{
-                    System.out.println("THIS CHAR NOT RANGED");
+                    else{
+                        burst();
+                    }
+                    this.cooldown = System.currentTimeMillis();
                 }
 
             }
@@ -292,6 +299,12 @@ public class Figur extends Sprite {
         Missile tempMissile = new Missile(x + width / 2, y + height / 2, this.direction);
         tempMissile.setParent(this.name);
         missiles.add(tempMissile);
+    }
+
+    public void burst(){
+        this.AOE = new AOE(x-width/3, y-width/3);
+        loadImage("resources/sprites/"+this.name+"_figur/"+this.name+"_burst.png");
+
     }
 
     public void keyReleased(KeyEvent e) {
@@ -376,5 +389,9 @@ public class Figur extends Sprite {
 
     public int getDamage(){
         return this.getDamage();
+    }
+
+    public String getfClass(){
+        return this.fClass;
     }
 }
