@@ -145,7 +145,7 @@ public class Figur extends Sprite {
     public void keyPressed(KeyEvent e) {
 
         int key = e.getKeyCode();
-        if(this.isPlayerOne){
+        if(this.isPlayerOne && this.health > 0){
             if (key == KeyEvent.VK_E) {
                 if((System.currentTimeMillis()) - this.cooldown > this.cdTime){
                     if(this.fClass.equals("ranged")){
@@ -236,7 +236,7 @@ public class Figur extends Sprite {
         }
 
         //PLAYER TWOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-        else{
+        else if(!this.isPlayerOne  && this.health > 0){
             if (key == KeyEvent.VK_O) {
                 if((System.currentTimeMillis()) - this.cooldown > this.cdTime){
                     if(this.fClass.equals("ranged")){
