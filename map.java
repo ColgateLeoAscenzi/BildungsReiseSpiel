@@ -38,8 +38,8 @@ public class Map extends JPanel implements ActionListener {
         setDoubleBuffered(true);
         Figuren = new Figur[2];
 
-        Figur1 = new Figur(ICRAFT_X, ICRAFT_Y, "dawson", true);
-        Figur2 = new Figur(ICRAFT_X+560, ICRAFT_Y, "michael", false);
+        Figur1 = new Figur(ICRAFT_X, ICRAFT_Y, "leo", true);
+        Figur2 = new Figur(ICRAFT_X+560, ICRAFT_Y, "dawson", false);
         Figuren[0] = Figur1;
         Figuren[1] = Figur2;
 
@@ -197,9 +197,25 @@ public class Map extends JPanel implements ActionListener {
                 Figuren[1].setHealth(Figuren[1].getHealth()-Figuren[0].getDamage());
                 //Change attacking to false
                 Figuren[0].setMelee(false);
+                //removes the damage so you have to move to reset attacking
+                Figuren[0].setDamage(0);
                 //Check death
                 if(Figuren[1].getHealth() <= 0){
                     System.out.println(Figuren[1].getName()+" was slain!");
+                }
+            }
+        }
+        else if(Figuren[1].getMelee()){
+            if(Figuren[1].getHitbox().intersects(Figuren[0].getHitbox())){
+                //Apply sword damage
+                Figuren[0].setHealth(Figuren[0].getHealth()-Figuren[1].getDamage());
+                //Change attacking to false
+                Figuren[1].setMelee(false);
+                //removes the damage so you have to move to reset attacking
+                Figuren[1].setDamage(1);
+                //Check death
+                if(Figuren[1].getHealth() <= 0){
+                    System.out.println(Figuren[0].getName()+" was slain!");
                 }
             }
         }

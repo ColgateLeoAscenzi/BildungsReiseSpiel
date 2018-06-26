@@ -232,8 +232,11 @@ public class Figur extends Sprite {
                     if(this.fClass.equals("ranged")){
                         fire();
                     }
-                    else{
+                    else if(this.fClass.equals("aoe")){
                         burst();
+                    }
+                    else{
+                        strike();
                     }
                     this.cooldown = System.currentTimeMillis();
                 }
@@ -434,5 +437,9 @@ public class Figur extends Sprite {
 
     public void setMelee(boolean isMelee){
         this.isMelee = isMelee;
+    }
+
+    public void setDamage(int damage){
+        this.damage = damage;
     }
 }
