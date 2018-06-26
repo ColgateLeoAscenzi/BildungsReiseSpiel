@@ -37,7 +37,7 @@ public class Figur extends Sprite {
         //basic class assignments
         if(name.equals("leo") || name.equals("kevin") || name.equals("eli") || name.equals("gabby") || name.equals("alex")){
             this.fClass = "ranged";
-            this.speed = 3;
+            this.speed = 2;
             this.health = 10;
             this.damage = 2;
             this.aRange = 0;
