@@ -8,12 +8,25 @@ public class RunGame extends JFrame {
 
     public RunGame() {
         initSelect();
-        initUI();
+        //initUI();
     }
 
     private void initSelect(){
-        JPanel select = new JPanel();
-        
+        JPanel selectcontainer = new JPanel();
+        MenschSelect select = new MenschSelect();
+        selectcontainer.setPreferredSize(new Dimension(980, 834));
+        select.setPreferredSize(new Dimension(980, 834));
+        selectcontainer.add(select);
+        pack();
+
+        add(selectcontainer);
+        setTitle("Choose Your Character!");
+        setSize(980,834);
+        setLocationRelativeTo(null);
+        setResizable(false);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
     }
 
     private void initUI() {

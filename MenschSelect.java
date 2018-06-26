@@ -16,8 +16,14 @@ import javax.swing.ImageIcon;
 
 public class MenschSelect extends JPanel implements ActionListener {
 
-        private Figur Figur1S;
-        private Figur Figur2S;
+        private final int SX1 = 200;
+        private final int SY1 = 300;
+        private final int SX2 = 600;
+        private final int SY2 = 300;
+
+        private FigurS Figur1S;
+        private FigurS Figur2S;
+        private FigurS[] Figuren;
 
         public MenschSelect() {
 
@@ -29,6 +35,15 @@ public class MenschSelect extends JPanel implements ActionListener {
             setFocusable(true);
             setBackground(Color.GRAY);
             setDoubleBuffered(true);
+            Figuren = new FigurS[2];
+
+            Figur1S = new FigurS(SX1, SY1, "leo", true);
+            Figur2S = new FigurS(SX2, SY2, "dawson", false);
+            Figuren[0] = Figur1S;
+            Figuren[1] = Figur2S;
+
+            Timer timer = new Timer(10, this);
+            timer.start();
 
         }
 
@@ -44,6 +59,9 @@ public class MenschSelect extends JPanel implements ActionListener {
         private void doDrawing(Graphics g) {
 
             Graphics2D g2d = (Graphics2D) g;
+            for(int i = 0; i < Figuren.length; i++){
+                g2d.drawImage(Figuren[i].getImage(), Figuren[i].getX(), Figuren[i].getY(), this);
+            }
 
             //ImageIcon ii = new ImageIcon("resources/backgrounds/"+this.mapName+".png");
             //Image image = ii.getImage();
