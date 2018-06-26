@@ -1,6 +1,7 @@
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
 
 public class Figur extends Sprite {
 
@@ -12,6 +13,7 @@ public class Figur extends Sprite {
     private List<Missile> missiles;
     private int imgC;
     private String direction;
+    private long cooldown;
 
     public Figur(int x, int y, String name) {
         super(x, y);
@@ -20,6 +22,10 @@ public class Figur extends Sprite {
     }
 
     private void initFigur(String name) {
+        //handles cooldowns
+        this.cooldown = System.currentTimeMillis();
+
+
 
         //handles speed
         this.speed = 2;
@@ -64,7 +70,11 @@ public class Figur extends Sprite {
         int key = e.getKeyCode();
 
         if (key == KeyEvent.VK_E) {
-            fire();
+            if((System.currentTimeMillis()) - this.cooldown > 300){
+                fire();
+                this.cooldown = System.currentTimeMillis();
+            }
+
         }
 
         if (key == KeyEvent.VK_A) {
@@ -134,7 +144,7 @@ public class Figur extends Sprite {
 
     public void fire() {
         Missile tempMissile = new Missile(x + width / 2, y + height / 2, this.direction);
-        tempMissile.setParent("this.name");
+        tempMissile.setParent(this.name);
         missiles.add(tempMissile);
     }
 
