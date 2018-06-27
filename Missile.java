@@ -5,7 +5,7 @@ public class Missile extends Sprite {
 
     private final int BOARD_WIDTH = 800;
     private final int BOARD_HEIGHT = 800;
-    private final int MISSILE_SPEED = 5;
+    private int MISSILE_SPEED = 5;
     private String parent;
     private String direction;
     private Rectangle hitbox;
@@ -16,10 +16,10 @@ public class Missile extends Sprite {
         super(x, y);
         this.parent = parent;
         this.direction = direction;
-        initMissile();
+        initMissile(parent);
     }
 
-    private void initMissile() {
+    private void initMissile(String parent) {
         this.damage = 1;
         loadImage("resources/sprites/"+this.parent+"_figur/"+this.parent+"_missile"+this.direction+".png");
         getImageDimensions();
@@ -31,6 +31,13 @@ public class Missile extends Sprite {
         int[] ppD = new int[]{2, 2, 3, 1, 2, 2, 2, 3, 4, 5};
         for(int i = 0; i < ppN.length; i++){
             this.parentDamage.put(ppN[i],ppD[i]);
+        }
+        this.damage = parentDamage.get(parent);
+        if(parent.equals("jack")){
+            this.MISSILE_SPEED = 3;
+        }
+        else if(parent.equals("eli")){
+            this.MISSILE_SPEED = 8;
         }
     }
 
@@ -72,7 +79,7 @@ public class Missile extends Sprite {
     public void setParent(String parent){
         //sets the parent of the missile and their respective damage
         this.parent = parent;
-        damage = this.parentDamage.get(parent);
+        this.damage = this.parentDamage.get(parent);
     }
 
     public String getParent(){
