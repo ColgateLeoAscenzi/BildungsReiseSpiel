@@ -21,3 +21,7 @@
 - - Matthew: Corrections, ranged AOE (30), does 1 damage, 10 health, 3 speed
 - - Elizabeth: Fists, melee (12), does 3 damage, 14 health, 2 speed
 - - Dawson: Pen, melee (20), does 3 damage, 12 health, 2 speed
+
+
+142 Unique sprites
+1381 Lines of Code
