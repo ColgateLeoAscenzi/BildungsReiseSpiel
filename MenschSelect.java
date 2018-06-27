@@ -18,10 +18,10 @@ import java.lang.Runtime;
 
 public class MenschSelect extends JPanel implements ActionListener {
 
-        private final int SX1 = 200;
-        private final int SY1 = 300;
-        private final int SX2 = 600;
-        private final int SY2 = 300;
+        private final int SX1 = 50;
+        private final int SY1 = 0;
+        private final int SX2 = 450;
+        private final int SY2 = 0;
 
         private FigurS Figur1S;
         private FigurS Figur2S;
@@ -79,14 +79,14 @@ public class MenschSelect extends JPanel implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             //Check for completeness
 
-            if(Figuren[0].getIsLockedIn() && Figuren[1].getIsLockedIn()){
+            if(Figuren[0].getIsLockedIn() && Figuren[1].getIsLockedIn() && Figuren[0].getPleaseStart()){
                 //START GAME
                 Figuren[0].setIsLockedIn(false);
                 System.out.println("Start Game!");
                 this.isStarted = true;
                 try
                     {
-                        Thread.sleep(5000);
+                        Thread.sleep(4000);
                         StartGame();
                     }
                     catch(InterruptedException ex)
