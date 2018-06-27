@@ -90,7 +90,7 @@ public class Figur extends Sprite {
         }
 
         if(name.equals("jack")){
-            this.health = 15;
+            this.health = 14;
             this.speed = 1;
             this.damage = 5;
         }

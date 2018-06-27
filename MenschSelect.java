@@ -20,7 +20,7 @@ public class MenschSelect extends JPanel implements ActionListener {
 
         private final int SX1 = 50;
         private final int SY1 = 0;
-        private final int SX2 = 450;
+        private final int SX2 = 525;
         private final int SY2 = 0;
 
         private FigurS Figur1S;
