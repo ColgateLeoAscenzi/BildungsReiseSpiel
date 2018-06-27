@@ -50,7 +50,7 @@ public class Figur extends Sprite {
             this.fClass = "aoe";
             this.speed = 3;
             this.health = 10;
-            this.damage = 1;
+            this.damage = 2;
             this.aRange = 30;
             this.mRange = 0;
             this.cdTime = 200;
