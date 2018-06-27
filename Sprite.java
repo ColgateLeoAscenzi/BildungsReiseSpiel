@@ -19,7 +19,7 @@ public class Sprite {
         visible = true;
     }
 
-    protected void loadImage(String imageName) {
+    public void loadImage(String imageName) {
         ImageIcon ii = new ImageIcon(imageName);
         image = ii.getImage();
     }
@@ -38,8 +38,16 @@ public class Sprite {
         return x;
     }
 
+    public int getWidth(){
+        return width;
+    }
+
     public int getY() {
         return y;
+    }
+
+    public int getHeight(){
+        return height;
     }
 
     public boolean isVisible() {

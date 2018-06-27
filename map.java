@@ -26,6 +26,7 @@ public class Map extends JPanel implements ActionListener {
     private String mapName;
     private HealthContainer hp1;
     private HealthContainer hp2;
+    private Figur victor;
 
     public Map(String char1, String char2) {
 
@@ -33,7 +34,7 @@ public class Map extends JPanel implements ActionListener {
     }
 
     private void initMap(String char1, String char2) {
-
+        this.victor = null;
         this.mapName = "donaueschingenmap";
         addKeyListener(new TAdapter());
         setFocusable(true);
@@ -64,35 +65,42 @@ public class Map extends JPanel implements ActionListener {
     }
 
     private void doDrawing(Graphics g) {
-
         Graphics2D g2d = (Graphics2D) g;
+        if(this.victor == null){
 
-        ImageIcon ii = new ImageIcon("resources/backgrounds/"+this.mapName+".png");
-        Image image = ii.getImage();
 
-        g2d.drawImage(image, 0, 0, this);
+            ImageIcon ii = new ImageIcon("resources/backgrounds/"+this.mapName+".png");
+            Image image = ii.getImage();
 
-        for(int i = 0; i < Figuren.length; i++){
-            if(Figuren[i].getfClass().equals("ranged")){
-                List<Missile> missiles = Figuren[i].getMissiles();
+            g2d.drawImage(image, 0, 0, this);
 
-                for (Missile missile : missiles) {
+            for(int i = 0; i < Figuren.length; i++){
+                if(Figuren[i].getfClass().equals("ranged")){
+                    List<Missile> missiles = Figuren[i].getMissiles();
 
-                    g2d.drawImage(missile.getImage(), missile.getX(), missile.getY(), this);
+                    for (Missile missile : missiles) {
+
+                        g2d.drawImage(missile.getImage(), missile.getX(), missile.getY(), this);
+                    }
                 }
-            }
-            else if(Figuren[i].getfClass().equals("aoe")){
-                AOE tempAOE = Figuren[i].getAOE();
-                if(tempAOE != null){
-                    g2d.drawImage(tempAOE.getImage(), tempAOE.getX(), tempAOE.getY(), this);
+                else if(Figuren[i].getfClass().equals("aoe")){
+                    AOE tempAOE = Figuren[i].getAOE();
+                    if(tempAOE != null){
+                        g2d.drawImage(tempAOE.getImage(), tempAOE.getX(), tempAOE.getY(), this);
+                    }
                 }
-            }
-            else{
-                //melee
+                else{
+                    //melee
+                }
+
+                g2d.drawImage(Figuren[i].getImage(), Figuren[i].getX(), Figuren[i].getY(), this);
+
             }
 
-            g2d.drawImage(Figuren[i].getImage(), Figuren[i].getX(), Figuren[i].getY(), this);
 
+        }
+        else{
+            g2d.drawImage(victor.getImage(), 0, 0, this);
         }
 
 
@@ -108,11 +116,14 @@ public class Map extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if(victor == null){
+            updateMissiles();
+            updateFigur();
+            repaint();
+        }
 
-        updateMissiles();
-        updateFigur();
-        repaint();
     }
+
 
     private void updateMissiles() {
 
@@ -157,6 +168,9 @@ public class Map extends JPanel implements ActionListener {
                 //checks if player 2 died
                 if(Figuren[1].getHealth() <= 0){
                     System.out.println(Figuren[1].getName()+" was slain!");
+                    this.victor = Figuren[0];
+                    victor.loadImage("resources/sprites/"+victor.getName()+"_figur/"+victor.getName()+"_V.png");
+
                 }
             }
         }
@@ -170,6 +184,8 @@ public class Map extends JPanel implements ActionListener {
                 //chekcs if player 1 died
                 if(Figuren[0].getHealth() <= 0){
                     System.out.println(Figuren[0].getName()+" was slain!");
+                    this.victor = Figuren[1];
+                    victor.loadImage("resources/sprites/"+victor.getName()+"_figur/"+victor.getName()+"_V.png");
                 }
             }
         }
@@ -188,6 +204,8 @@ public class Map extends JPanel implements ActionListener {
                     //checks death
                     if(Figuren[1].getHealth() <= 0){
                         System.out.println(Figuren[1].getName()+" was slain!");
+                        this.victor = Figuren[0];
+                        victor.loadImage("resources/sprites/"+victor.getName()+"_figur/"+victor.getName()+"_V.png");
                     }
                 }
             }
@@ -201,6 +219,8 @@ public class Map extends JPanel implements ActionListener {
                     //checks death
                     if(Figuren[0].getHealth() <= 0){
                         System.out.println(Figuren[0].getName()+" was slain!");
+                        this.victor = Figuren[1];
+                        victor.loadImage("resources/sprites/"+victor.getName()+"_figur/"+victor.getName()+"_V.png");
                     }
                 }
             }
@@ -222,6 +242,8 @@ public class Map extends JPanel implements ActionListener {
                 //Check death
                 if(Figuren[1].getHealth() <= 0){
                     System.out.println(Figuren[1].getName()+" was slain!");
+                    this.victor = Figuren[0];
+                    victor.loadImage("resources/sprites/"+victor.getName()+"_figur/"+victor.getName()+"_V.png");
                 }
             }
         }
@@ -237,6 +259,8 @@ public class Map extends JPanel implements ActionListener {
                 //Check death
                 if(Figuren[0].getHealth() <= 0){
                     System.out.println(Figuren[0].getName()+" was slain!");
+                    this.victor = Figuren[1];
+                    victor.loadImage("resources/sprites/"+victor.getName()+"_figur/"+victor.getName()+"_V.png");
                 }
             }
         }

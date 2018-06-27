@@ -126,8 +126,13 @@ public class Figur extends Sprite {
     }
 
     public void move() {
-        x += dx;
-        y += dy;
+        if((x + dx >= 0) && (x + width + dx <=800)){
+            x += dx;
+        }
+        if((y + dy >= 0) && (y + height + dy <= 800)){
+            y += dy;
+        }
+
     }
 
     public List<Missile> getMissiles() {
@@ -166,6 +171,7 @@ public class Figur extends Sprite {
                 this.AOE = null;
                 this.damage = this.oDamage;
                 dx = -this.speed;
+
                 if(!direction.equals("L")){
                     imgC = 5;
                     direction = "L";
